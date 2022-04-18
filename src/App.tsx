@@ -1,41 +1,32 @@
-import React from "react";
-import logo from "./logo.svg";
-import "./App.css";
-import { Provider } from "mobx-react";
+import React from 'react'
+import './App.css'
+import { observer } from 'mobx-react'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { Header } from './components/Header'
+import { Main } from './pages/Main'
+import { About } from './pages/About'
+// import { makeObservable } from 'mobx'
 
-function App() {
-  return (
-    // <Provider store={store}>
-    //   <BrowserRouter>
-    //     <Header />
-    //     <Switch>
-    //       <Route exact={true} path="/">
-    //         <Home store={store} />
-    //       </Route>
-    //       <Route path="/about" component={About} />
-    //       <Route path="/order" component={Order} />
-    //       <Route path="/contacts" component={Contacts} />
-    //     </Switch>
-    //   </BrowserRouter>
-    // </Provider>
+export interface IAppProps {}
 
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+@observer
+export class App extends React.Component<IAppProps> {
+  // constructor(props: IAppProps) {
+  //   super(props)
+  //   makeObservable(this)
+  // }
+
+  render() {
+    return (
+      <BrowserRouter>
+        <Header />
+        <Routes>
+          <Route path="/">
+            <Route index element={<Main />} />
+            <Route path={'about'} element={<About />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
+    )
+  }
 }
-
-export default App;
