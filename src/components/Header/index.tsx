@@ -3,16 +3,17 @@ import { Link, NavLink } from 'react-router-dom'
 import { observer, inject } from 'mobx-react'
 import styled from 'styled-components'
 
-const LogoContainer = styled.div`
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-`
-
 const SiteHeader = styled.header`
   display: flex;
   flex-direction: column;
+  width: 950px;
+`
+
+const LogoContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
   align-items: center;
+  justify-content: space-between;
 `
 
 export interface IHeaderProps {}
