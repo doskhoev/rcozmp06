@@ -5,7 +5,14 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { Header } from './components/Header'
 import { Main } from './pages/Main'
 import { About } from './pages/About'
+import styled from 'styled-components'
 // import { makeObservable } from 'mobx'
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`
 
 export interface IAppProps {}
 
@@ -19,13 +26,15 @@ export class App extends React.Component<IAppProps> {
   render() {
     return (
       <BrowserRouter>
-        <Header />
-        <Routes>
-          <Route path="/">
-            <Route index element={<Main />} />
-            <Route path={'about'} element={<About />} />
-          </Route>
-        </Routes>
+        <Container>
+          <Header />
+          <Routes>
+            <Route path="/">
+              <Route index element={<Main />} />
+              <Route path={'about'} element={<About />} />
+            </Route>
+          </Routes>
+        </Container>
       </BrowserRouter>
     )
   }

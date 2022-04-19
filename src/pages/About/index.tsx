@@ -16,7 +16,6 @@ export class About extends React.Component<IAbout> {
     return (
       <div>
         <h1>About: {this.store.test}</h1>
-        <h2>{}</h2>
         <nav>
           <Link to="/">Main</Link> | <Link to="/about">About</Link>
         </nav>
