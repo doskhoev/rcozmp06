@@ -1,7 +1,8 @@
 import React from 'react'
-import { Link, NavLink } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { observer, inject } from 'mobx-react'
 import styled from 'styled-components'
+import { SiteNavigation } from '../SiteNavigation'
 
 const SiteHeader = styled.header`
   display: flex;
@@ -38,15 +39,7 @@ export class Header extends React.Component<IHeaderProps> {
             <img src={'/img/logo2.png'} alt="Logo" />
           </Link>
         </LogoContainer>
-        <nav>
-          <ul>
-            {this.menu.map(item => (
-              <NavLink key={`${item.id}`} to={item.routeTo}>
-                {item.title}
-              </NavLink>
-            ))}
-          </ul>
-        </nav>
+        <SiteNavigation items={this.menu} />
       </SiteHeader>
     )
   }

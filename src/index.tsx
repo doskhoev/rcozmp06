@@ -5,6 +5,10 @@ import { App } from './App'
 import { Provider } from 'mobx-react'
 import { RootStore } from './stores/root.store'
 
+export interface IStore {
+  store?: RootStore
+}
+
 const rootStore = new RootStore()
 
 const element = document.getElementById('root')
