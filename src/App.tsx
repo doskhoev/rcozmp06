@@ -1,12 +1,12 @@
 import React from 'react'
 import './App.css'
-import { observer } from 'mobx-react'
+import { inject, observer } from 'mobx-react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { Header } from './components/Header'
 import { Main } from './pages/Main'
-import { About } from './pages/About'
+import { Page } from './pages/Page'
 import styled from 'styled-components'
-// import { makeObservable } from 'mobx'
+import { IStore } from './index'
 
 const Container = styled.div`
   display: flex;
@@ -14,15 +14,11 @@ const Container = styled.div`
   align-items: center;
 `
 
-export interface IAppProps {}
+export interface IAppProps extends IStore {}
 
+@inject('store')
 @observer
 export class App extends React.Component<IAppProps> {
-  // constructor(props: IAppProps) {
-  //   super(props)
-  //   makeObservable(this)
-  // }
-
   render() {
     return (
       <BrowserRouter>
@@ -31,7 +27,13 @@ export class App extends React.Component<IAppProps> {
           <Routes>
             <Route path="/">
               <Route index element={<Main />} />
-              <Route path={'about'} element={<About />} />
+              {this.props.store?.firebaseStore.allMenuItems.map(menuItem => (
+                <Route
+                  key={menuItem.id}
+                  path={menuItem.id}
+                  element={<Page pageId={menuItem.id} />}
+                />
+              ))}
             </Route>
           </Routes>
         </Container>

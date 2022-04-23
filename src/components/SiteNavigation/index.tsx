@@ -1,15 +1,9 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
-
-interface IMenuItem {
-  id: string
-  title: string
-  routeTo: string
-  items?: IMenuItem[]
-}
+import { IMenu } from '../../stores/firebase.store'
 
 export interface ISiteNavigation {
-  items: IMenuItem[]
+  items?: IMenu[]
 }
 
 export class SiteNavigation extends React.Component<ISiteNavigation> {
@@ -17,8 +11,8 @@ export class SiteNavigation extends React.Component<ISiteNavigation> {
     return (
       <nav>
         <ul>
-          {this.props.items.map(item => (
-            <NavLink key={`${item.id}`} to={item.routeTo}>
+          {this.props.items?.map(item => (
+            <NavLink key={`${item.id}`} to={item.id}>
               {item.title}
             </NavLink>
           ))}

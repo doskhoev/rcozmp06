@@ -11,9 +11,7 @@ export class Main extends React.Component<IMain> {
     return (
       <div>
         <h1>Main</h1>
-        <pre>
-          {JSON.stringify(this.props.store?.firebaseStore.firestore, null, 2)}
-        </pre>
+        <pre>TODO</pre>
       </div>
     )
   }

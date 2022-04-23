@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { observer, inject } from 'mobx-react'
 import styled from 'styled-components'
 import { SiteNavigation } from '../SiteNavigation'
+import { IStore } from '../../index'
 
 const SiteHeader = styled.header`
   display: flex;
@@ -17,17 +18,11 @@ const LogoContainer = styled.div`
   justify-content: space-between;
 `
 
-export interface IHeaderProps {}
+export interface IHeaderProps extends IStore {}
 
 @inject('store')
 @observer
 export class Header extends React.Component<IHeaderProps> {
-  private menu = [
-    { id: 'main', title: 'Главная', routeTo: '/' },
-    { id: 'about', title: 'О нас', routeTo: '/about' },
-    { id: 'contacts', title: 'Контакты', routeTo: '/contacts' },
-  ]
-
   render() {
     return (
       <SiteHeader>
@@ -39,7 +34,9 @@ export class Header extends React.Component<IHeaderProps> {
             <img src={'/img/logo2.png'} alt="Logo" />
           </Link>
         </LogoContainer>
-        <SiteNavigation items={this.menu} />
+        {this.props.store?.firebaseStore.siteMenu && (
+          <SiteNavigation items={this.props.store?.firebaseStore.siteMenu} />
+        )}
       </SiteHeader>
     )
   }

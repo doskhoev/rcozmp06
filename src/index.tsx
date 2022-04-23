@@ -15,9 +15,7 @@ const element = document.getElementById('root')
 const root = ReactDOM.createRoot(element as HTMLElement)
 
 root.render(
-  <React.StrictMode>
-    <Provider store={rootStore}>
-      <App />
-    </Provider>
-  </React.StrictMode>
+  <Provider store={rootStore}>
+    <App />
+  </Provider>
 )
