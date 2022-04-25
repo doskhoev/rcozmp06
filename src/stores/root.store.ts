@@ -1,7 +1,7 @@
 import { FirebaseStore } from './firebase.store'
 
 export class RootStore {
-  firebaseStore: FirebaseStore
+  public firebaseStore: FirebaseStore
 
   constructor() {
     this.firebaseStore = new FirebaseStore()

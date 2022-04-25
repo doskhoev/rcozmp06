@@ -65,7 +65,8 @@ const NavBar = styled.div`
         background-color: #0084ff;
       }
       & div {
-        display: block;
+        display: flex;
+        flex-direction: column;
       }
     }
   }
@@ -91,13 +92,13 @@ export class SiteNavigation extends React.Component<ISiteNavigation> {
         {this.props.items?.map(item => {
           if (!item.items) {
             return (
-              <NavLink key={`${item.id}`} to={item.id}>
+              <NavLink key={item.id} to={item.id}>
                 {item.title}
               </NavLink>
             )
           } else {
             return (
-              <div>
+              <div key={item.id}>
                 <button>
                   {item.title} ↓ {/* <i class="fa fa-caret-down"></i> */}
                 </button>
